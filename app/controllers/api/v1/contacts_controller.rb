@@ -1,4 +1,4 @@
-class Api::V1::ContactsController < ApplicationController
+class Api::V1::ContactsController < Api::V1::BaseController
   def index
     @contacts = Contact.all
 
@@ -8,7 +8,7 @@ class Api::V1::ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
 
-    if @contact.save
+    if @contact.save!
       render json: @contact, status: :ok
     else
       render json: { successfull: "ERROR: Not a valid model" }
